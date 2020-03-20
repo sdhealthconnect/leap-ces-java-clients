@@ -24,21 +24,21 @@ public class Request {
     *
     */
     @JsonProperty("AccessSubject")
-    private List<Object> accessSubject = null;
+    private List<AccessSubject> accessSubject = null;
     /**
     *
     * (Required)
     *
     */
     @JsonProperty("Action")
-    private List<Object> action = null;
+    private List<Action> action = null;
     /**
     *
     * (Required)
     *
     */
     @JsonProperty("Resource")
-    private List<Object> resource = null;
+    private List<Resource> resource = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -48,7 +48,7 @@ public class Request {
     *
     */
     @JsonProperty("AccessSubject")
-    public List<Object> getAccessSubject() {
+    public List<AccessSubject> getAccessSubject() {
         return accessSubject;
     }
 
@@ -58,7 +58,7 @@ public class Request {
     *
     */
     @JsonProperty("AccessSubject")
-    public void setAccessSubject(List<Object> accessSubject) {
+    public void setAccessSubject(List<AccessSubject> accessSubject) {
         this.accessSubject = accessSubject;
     }
 
@@ -68,7 +68,7 @@ public class Request {
     *
     */
     @JsonProperty("Action")
-    public List<Object> getAction() {
+    public List<Action> getAction() {
         return action;
     }
 
@@ -78,7 +78,7 @@ public class Request {
     *
     */
     @JsonProperty("Action")
-    public void setAction(List<Object> action) {
+    public void setAction(List<Action> action) {
         this.action = action;
     }
 
@@ -88,7 +88,7 @@ public class Request {
     *
     */
     @JsonProperty("Resource")
-    public List<Object> getResource() {
+    public List<Resource> getResource() {
         return resource;
     }
 
@@ -98,7 +98,7 @@ public class Request {
     *
     */
     @JsonProperty("Resource")
-    public void setResource(List<Object> resource) {
+    public void setResource(List<Resource> resource) {
         this.resource = resource;
     }
 

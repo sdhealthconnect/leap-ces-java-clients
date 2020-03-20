@@ -29,7 +29,7 @@ public class XacmlResponse {
     *
     */
     @JsonProperty("Response")
-    private List<Object> response = null;
+    private List<Response> response = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -39,7 +39,7 @@ public class XacmlResponse {
     *
     */
     @JsonProperty("Response")
-    public List<Object> getResponse() {
+    public List<Response> getResponse() {
         return response;
     }
 
@@ -49,7 +49,7 @@ public class XacmlResponse {
     *
     */
     @JsonProperty("Response")
-    public void setResponse(List<Object> response) {
+    public void setResponse(List<Response> response) {
         this.response = response;
     }
 
