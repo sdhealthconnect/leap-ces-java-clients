@@ -127,7 +127,8 @@ public class ConsentConsultClientXacmlTests {
 
         System.out.println(decision);
 
-        assert (decisionList.contains(decision));
+        assert (decision != null);
+        assert (decision.equals("Permit"));
         assert (obligationAction.equals("REDACT"));
         assert (obligationActionSystem.equals("http://terminology.hl7.org/CodeSystem/v3-ActCode"));
         assert (securityLabel.equals("R"));

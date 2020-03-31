@@ -5,7 +5,6 @@
  */
 package gov.hhs.onc.leap.ces.common.client.card.tests;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Actor;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Context;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Context.PurposeOfUse;
@@ -18,14 +17,11 @@ import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookR
 import gov.hhs.onc.leap.ces.common.clients.model.card.Source;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -99,7 +95,12 @@ public class ConsentConsultClientCardTests {
         String label = extension.getObligations().get(0).getParameters().getLabels().get(0).getCode();
         System.out.println(decision);
 
-        assert (decisionList.contains(decision));
+        assert (summary != null);
+        assert (detail != null);
+        assert (indicator != null);
+        assert (source != null);
+        assert (decision != null );
+        assert (decision.equals("CONSENT_PERMIT"));
         assert (action.equals("REDACT"));
         assert (label.equals("R"));
 
