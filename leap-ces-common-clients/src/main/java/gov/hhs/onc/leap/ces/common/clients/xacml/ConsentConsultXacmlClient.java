@@ -34,7 +34,7 @@ public class ConsentConsultXacmlClient {
     private final String host;
     private final String endpoint = "/xacml";
     private final XacmlRequest consentRequest;
-    private HttpClient client;
+
     private static final Header CDS_CLIENT_HEADER_CONTENT = new BasicHeader(HttpHeaders.CONTENT_TYPE,
             "application/json");
     private static final Header CDS_CLIENT_HEADER_ACCEPTS = new BasicHeader(HttpHeaders.ACCEPT, "application/json");
