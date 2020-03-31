@@ -23,3 +23,5 @@ leap-ces-common-clients/.settings/org.eclipse.m2e.core.prefs
 leap-ces-common-clients/.settings/org.eclipse.jdt.core.prefs
 leap-ces-common-clients/.project
 leap-ces-common-clients/.classpath
+/target
+.project
