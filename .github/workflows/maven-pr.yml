@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.11
+      - name: Change to code directory
+        run: cd leap-ces-common-clients
       - name: Maven Package
         run: mvn -B clean package -DskipTests
       - name: Maven Verify
