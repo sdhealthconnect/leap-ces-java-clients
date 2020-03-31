@@ -34,7 +34,6 @@ public class ConsentConsultCardClient {
     private final String host;
     private final String endpoint = "/cds-services/patient-consent-consult";
     private final PatientConsentConsultHookRequest consentRequest;
-    private HttpClient client;
     private static final Header CDS_CLIENT_HEADER_CONTENT = new BasicHeader(HttpHeaders.CONTENT_TYPE,
             "application/json");
     private static final Header CDS_CLIENT_HEADER_ACCEPTS = new BasicHeader(HttpHeaders.ACCEPT, "application/json");
