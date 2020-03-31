@@ -15,11 +15,9 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "labels"
-})
+@JsonPropertyOrder({ "labels" })
 public class Parameters {
-    
+
     @JsonProperty("labels")
     private List<Labels> labels;
 
@@ -32,12 +30,12 @@ public class Parameters {
     }
 
     /**
-     * @param labels the labels to set
+     * @param labels
+     *            the labels to set
      */
     @JsonProperty("labels")
     public void setLabels(List<Labels> labels) {
         this.labels = labels;
     }
-    
-    
+
 }

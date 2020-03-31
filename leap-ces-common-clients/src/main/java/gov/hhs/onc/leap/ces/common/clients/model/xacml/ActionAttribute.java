@@ -14,12 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "AttributeId",
-    "Value"
-})
+@JsonPropertyOrder({ "AttributeId", "Value" })
 public class ActionAttribute {
-    
+
     @JsonProperty("AttributeId")
     private String attributeId;
     @JsonProperty("Value")
@@ -34,7 +31,8 @@ public class ActionAttribute {
     }
 
     /**
-     * @param attributeId the attributeId to set
+     * @param attributeId
+     *            the attributeId to set
      */
     @JsonProperty("AttributeId")
     public void setAttributeId(String attributeId) {
@@ -50,11 +48,12 @@ public class ActionAttribute {
     }
 
     /**
-     * @param value the value to set
+     * @param value
+     *            the value to set
      */
     @JsonProperty("Value")
     public void setValue(String value) {
         this.value = value;
     }
-    
+
 }

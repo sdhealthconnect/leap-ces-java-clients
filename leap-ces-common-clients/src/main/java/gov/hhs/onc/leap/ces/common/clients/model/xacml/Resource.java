@@ -15,11 +15,9 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "Attribute"
-})
+@JsonPropertyOrder({ "Attribute" })
 public class Resource {
-    
+
     @JsonProperty("Attribute")
     private List<Attribute> attribute;
 
@@ -32,7 +30,8 @@ public class Resource {
     }
 
     /**
-     * @param attribute the attribute to set
+     * @param attribute
+     *            the attribute to set
      */
     @JsonProperty("Attribute")
     public void setAttribute(List<Attribute> attribute) {

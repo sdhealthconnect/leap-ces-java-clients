@@ -16,15 +16,12 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "id",
-    "parameters"
-})
+@JsonPropertyOrder({ "id", "parameters" })
 public class Obligations {
-    
+
     @JsonProperty("id")
     private ObligationId obligationId;
-    
+
     @JsonProperty("parameters")
     private Parameters parameters;
 
@@ -37,7 +34,8 @@ public class Obligations {
     }
 
     /**
-     * @param obligationId the obligationId to set
+     * @param obligationId
+     *            the obligationId to set
      */
     @JsonProperty("id")
     public void setObligationId(ObligationId obligationId) {
@@ -53,7 +51,8 @@ public class Obligations {
     }
 
     /**
-     * @param attributeAssignments the attributeAssignments to set
+     * @param attributeAssignments
+     *            the attributeAssignments to set
      */
     @JsonProperty("parameters")
     public void setParameters(Parameters parameters) {

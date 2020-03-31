@@ -10,44 +10,41 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-
 /**
-* Patient Consent Consult XACML Response
-* <p>
-* Patient Consent Consult XACML Response
-*
-*/
+ * Patient Consent Consult XACML Response
+ * <p>
+ * Patient Consent Consult XACML Response
+ *
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-"Response"
-})
+@JsonPropertyOrder({ "Response" })
 public class XacmlResponse {
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Response")
     private List<Response> response = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Response")
     public List<Response> getResponse() {
         return response;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Response")
     public void setResponse(List<Response> response) {
         this.response = response;

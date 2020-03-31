@@ -16,15 +16,12 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "AttributeId",
-    "Value"
-})
+@JsonPropertyOrder({ "AttributeId", "Value" })
 public class AttributeAssignment {
-    
+
     @JsonProperty("AttributeId")
     private String attributeId;
-    
+
     @JsonProperty("Value")
     private List<SystemCode> systemCodes = new ArrayList<SystemCode>();
 
@@ -37,7 +34,8 @@ public class AttributeAssignment {
     }
 
     /**
-     * @param attributeId the attributeId to set
+     * @param attributeId
+     *            the attributeId to set
      */
     @JsonProperty("AttributeId")
     public void setAttributeId(String attributeId) {
@@ -53,7 +51,8 @@ public class AttributeAssignment {
     }
 
     /**
-     * @param systemCodes the systemCodes to set
+     * @param systemCodes
+     *            the systemCodes to set
      */
     @JsonProperty("Value")
     public void setSystemCodes(List<SystemCode> systemCodes) {

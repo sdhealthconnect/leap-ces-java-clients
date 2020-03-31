@@ -10,64 +10,61 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-"system",
-"value"
-})
+@JsonPropertyOrder({ "system", "value" })
 public class Actor {
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("system")
     private String system;
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("value")
     private String value;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("system")
     public String getSystem() {
         return system;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("system")
     public void setSystem(String system) {
         this.system = system;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("value")
     public String getValue() {
         return value;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("value")
     public void setValue(String value) {
         this.value = value;

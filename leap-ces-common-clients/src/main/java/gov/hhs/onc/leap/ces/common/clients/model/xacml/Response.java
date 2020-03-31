@@ -15,12 +15,9 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "Decision",
-    "Obligations"
-})
+@JsonPropertyOrder({ "Decision", "Obligations" })
 public class Response {
-    
+
     @JsonProperty("Decision")
     private String decision;
     @JsonProperty("Obligations")
@@ -35,7 +32,8 @@ public class Response {
     }
 
     /**
-     * @param decision the decision to set
+     * @param decision
+     *            the decision to set
      */
     @JsonProperty("Decision")
     public void setDecision(String decision) {
@@ -51,7 +49,8 @@ public class Response {
     }
 
     /**
-     * @param obligations the obligations to set
+     * @param obligations
+     *            the obligations to set
      */
     @JsonProperty("Obligations")
     public void setObligations(List<Obligations> obligations) {

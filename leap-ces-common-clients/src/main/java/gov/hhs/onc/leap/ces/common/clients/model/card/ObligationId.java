@@ -14,10 +14,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ObligationId {
-    
+
     @JsonProperty("code")
     private String code;
-    
+
     @JsonProperty("system")
     private String system;
 
@@ -30,7 +30,8 @@ public class ObligationId {
     }
 
     /**
-     * @param code the code to set
+     * @param code
+     *            the code to set
      */
     @JsonProperty("code")
     public void setCode(String code) {
@@ -46,12 +47,12 @@ public class ObligationId {
     }
 
     /**
-     * @param system the system to set
+     * @param system
+     *            the system to set
      */
     @JsonProperty("system")
     public void setSystem(String system) {
         this.system = system;
     }
-    
 
 }

@@ -11,92 +11,88 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-"AccessSubject",
-"Action",
-"Resource"
-})
+@JsonPropertyOrder({ "AccessSubject", "Action", "Resource" })
 public class Request {
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("AccessSubject")
     private List<AccessSubject> accessSubject = null;
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Action")
     private List<Action> action = null;
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Resource")
     private List<Resource> resource = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("AccessSubject")
     public List<AccessSubject> getAccessSubject() {
         return accessSubject;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("AccessSubject")
     public void setAccessSubject(List<AccessSubject> accessSubject) {
         this.accessSubject = accessSubject;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Action")
     public List<Action> getAction() {
         return action;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Action")
     public void setAction(List<Action> action) {
         this.action = action;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Resource")
     public List<Resource> getResource() {
         return resource;
     }
 
     /**
-    *
-    * (Required)
-    *
-    */
+     *
+     * (Required)
+     *
+     */
     @JsonProperty("Resource")
     public void setResource(List<Resource> resource) {
         this.resource = resource;
@@ -104,7 +100,7 @@ public class Request {
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
+        return this.additionalProperties;
     }
 
     @JsonAnySetter
