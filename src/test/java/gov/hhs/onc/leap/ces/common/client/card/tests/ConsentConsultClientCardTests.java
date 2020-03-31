@@ -99,7 +99,7 @@ public class ConsentConsultClientCardTests {
         assert (detail != null);
         assert (indicator != null);
         assert (source != null);
-        assert (decision != null );
+        assert (decision != null);
         assert (decision.equals("CONSENT_PERMIT"));
         assert (action.equals("REDACT"));
         assert (label.equals("R"));
