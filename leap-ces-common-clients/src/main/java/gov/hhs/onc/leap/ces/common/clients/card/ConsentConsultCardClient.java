@@ -25,7 +25,6 @@ import org.apache.http.message.BasicHeader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author duanedecouteau
@@ -36,66 +35,59 @@ public class ConsentConsultCardClient {
     private final String endpoint = "/cds-services/patient-consent-consult";
     private final PatientConsentConsultHookRequest consentRequest;
     private HttpClient client;
-    private static final Header CDS_CLIENT_HEADER_CONTENT = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
+    private static final Header CDS_CLIENT_HEADER_CONTENT = new BasicHeader(HttpHeaders.CONTENT_TYPE,
+            "application/json");
     private static final Header CDS_CLIENT_HEADER_ACCEPTS = new BasicHeader(HttpHeaders.ACCEPT, "application/json");
-    
 
-    
     public ConsentConsultCardClient(String host, PatientConsentConsultHookRequest consentRequest) {
         this.host = host;
         this.consentRequest = consentRequest;
     }
-    
-    
+
     public PatientConsentConsultHookResponse requestDecisionSecured() {
         PatientConsentConsultHookResponse result = new PatientConsentConsultHookResponse();
-        CloseableHttpClient httpClient = HttpClients.custom()
-            .setSSLHostnameVerifier(new NoopHostnameVerifier())
-            .setDefaultHeaders(getDefaultHeaders())
-            .build();        
+        CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(new NoopHostnameVerifier())
+                .setDefaultHeaders(getDefaultHeaders()).build();
         try {
-		HttpPost postRequest = new HttpPost(host + endpoint);
-                ObjectMapper mapper = new ObjectMapper();
-                String jsonString = mapper.writeValueAsString(consentRequest);
-		StringEntity input = new StringEntity(jsonString);
+            HttpPost postRequest = new HttpPost(host + endpoint);
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonString = mapper.writeValueAsString(consentRequest);
+            StringEntity input = new StringEntity(jsonString);
 
-		postRequest.setEntity(input);
+            postRequest.setEntity(input);
 
-		HttpResponse response = httpClient.execute(postRequest);
-                
-		BufferedReader br = new BufferedReader(
-                        new InputStreamReader((response.getEntity().getContent())));
+            HttpResponse response = httpClient.execute(postRequest);
 
-		String output;
-                StringBuffer sb = new StringBuffer();
-                
-		while ((output = br.readLine()) != null) {
-                        sb.append(output);
-		}
-                LOGGER.log(Level.INFO, String.format("Patient Consent Consult Response: " , sb.toString()));
-                
-                result = mapper.readValue(sb.toString(), PatientConsentConsultHookResponse.class);
-        }
-        catch (Exception ex) {
-            LOGGER.log(Level.SEVERE, String.format("Patient Consent Consult Failure: " , ex.getMessage()));
+            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+
+            String output;
+            StringBuffer sb = new StringBuffer();
+
+            while ((output = br.readLine()) != null) {
+                sb.append(output);
+            }
+            LOGGER.log(Level.INFO, String.format("Patient Consent Consult Response: ", sb.toString()));
+
+            result = mapper.readValue(sb.toString(), PatientConsentConsultHookResponse.class);
+        } catch (Exception ex) {
+            LOGGER.log(Level.SEVERE, String.format("Patient Consent Consult Failure: ", ex.getMessage()));
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 httpClient.close();
-            }
-            catch (Exception exClose) {
-                LOGGER.log(Level.WARNING, String.format("Consent Consult Client Failed to Close: " , exClose.getMessage()));
+            } catch (Exception exClose) {
+                LOGGER.log(Level.WARNING,
+                        String.format("Consent Consult Client Failed to Close: ", exClose.getMessage()));
             }
         }
         return result;
     }
-    
+
     private List<Header> getDefaultHeaders() {
         List<Header> defaultHeaders = new ArrayList<Header>();
         defaultHeaders.add(CDS_CLIENT_HEADER_CONTENT);
         defaultHeaders.add(CDS_CLIENT_HEADER_ACCEPTS);
         return defaultHeaders;
     }
-    
+
 }

@@ -15,11 +15,9 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "Attribute"
-})
+@JsonPropertyOrder({ "Attribute" })
 public class Action {
-    
+
     @JsonProperty("Attribute")
     private List<ActionAttribute> attribute;
 
@@ -32,7 +30,8 @@ public class Action {
     }
 
     /**
-     * @param attribute the attribute to set
+     * @param attribute
+     *            the attribute to set
      */
     @JsonProperty("Attribute")
     public void setAttribute(List<ActionAttribute> attribute) {

@@ -14,15 +14,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "label",
-    "url"
-})
+@JsonPropertyOrder({ "label", "url" })
 public class Source {
-    
+
     @JsonProperty("label")
     private String label;
-    
+
     @JsonProperty("url")
     private String url;
 
@@ -35,7 +32,8 @@ public class Source {
     }
 
     /**
-     * @param label the label to set
+     * @param label
+     *            the label to set
      */
     @JsonProperty("label")
     public void setLabel(String label) {
@@ -51,11 +49,12 @@ public class Source {
     }
 
     /**
-     * @param url the url to set
+     * @param url
+     *            the url to set
      */
     @JsonProperty("url")
     public void setUrl(String url) {
         this.url = url;
     }
-    
+
 }

@@ -36,18 +36,18 @@ public class ConsentConsultClientCardTests {
     private PatientConsentConsultHookRequest request;
     private String host = "https://sdhc-leap.appspot.com";
     private List<String> decisionList = new ArrayList<String>();
-    
+
     public ConsentConsultClientCardTests() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         request = new PatientConsentConsultHookRequest();
@@ -68,18 +68,18 @@ public class ConsentConsultClientCardTests {
         lActor.add(actor);
         ctx.setActor(lActor);
         request.setContext(ctx);
-        
+
         request.setHook("patient-consent-consult");
         request.setHookInstance("123456");
-        
+
         decisionList.add("CONSENT_PERMIT");
         decisionList.add("CONSENT_DENY");
         decisionList.add("NO_CONSENT");
-        
+
         client = new ConsentConsultCardClient(host, request);
 
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -93,15 +93,15 @@ public class ConsentConsultClientCardTests {
         String indicator = card.getIndicator();
         Source source = card.getSource();
         Extension extension = card.getExtension();
-        
+
         String decision = extension.getDecision();
         String action = extension.getObligations().get(0).getObligationId().getCode();
         String label = extension.getObligations().get(0).getParameters().getLabels().get(0).getCode();
         System.out.println(decision);
-        
-        assert(decisionList.contains(decision));
-        assert(action.equals("REDACT"));
-        assert(label.equals("R"));
-    
+
+        assert (decisionList.contains(decision));
+        assert (action.equals("REDACT"));
+        assert (label.equals("R"));
+
     }
 }

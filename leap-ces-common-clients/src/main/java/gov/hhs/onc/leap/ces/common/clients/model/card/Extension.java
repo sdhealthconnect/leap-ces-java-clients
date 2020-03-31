@@ -16,15 +16,12 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "Decision",
-    "Obligations"
-})
+@JsonPropertyOrder({ "Decision", "Obligations" })
 public class Extension {
-    
+
     @JsonProperty("decision")
     private String decision;
-    
+
     @JsonProperty("obligations")
     private List<Obligations> obligations = new ArrayList<Obligations>();
 
@@ -37,7 +34,8 @@ public class Extension {
     }
 
     /**
-     * @param obligations the obligations to set
+     * @param obligations
+     *            the obligations to set
      */
     @JsonProperty("obligations")
     public void setObligations(List<Obligations> obligations) {
@@ -53,7 +51,8 @@ public class Extension {
     }
 
     /**
-     * @param decision the decision to set
+     * @param decision
+     *            the decision to set
      */
     @JsonProperty("decision")
     public void setDecision(String decision) {

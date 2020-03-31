@@ -14,15 +14,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "system",
-    "code"
-})
+@JsonPropertyOrder({ "system", "code" })
 public class SystemCode {
-    
+
     @JsonProperty("system")
     private String system;
-    
+
     @JsonProperty("code")
     private String code;
 
@@ -35,7 +32,8 @@ public class SystemCode {
     }
 
     /**
-     * @param system the system to set
+     * @param system
+     *            the system to set
      */
     @JsonProperty("system")
     public void setSystem(String system) {
@@ -51,11 +49,12 @@ public class SystemCode {
     }
 
     /**
-     * @param code the code to set
+     * @param code
+     *            the code to set
      */
     @JsonProperty("code")
     public void setCode(String code) {
         this.code = code;
     }
-    
+
 }

@@ -33,24 +33,24 @@ public class ConsentConsultClientXacmlTests {
     private XacmlRequest xacmlRequest;
     private String host = "https://sdhc-leap.appspot.com";
     private List<String> decisionList = new ArrayList<String>();
-    
+
     public ConsentConsultClientXacmlTests() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         xacmlRequest = new XacmlRequest();
         Request request = new Request();
-        
-        //set requestor info
+
+        // set requestor info
         List<AccessSubject> subjectList = new ArrayList<AccessSubject>();
         AccessSubject subject = new AccessSubject();
         List<Attribute> subjAttrList = new ArrayList<Attribute>();
@@ -66,9 +66,8 @@ public class ConsentConsultClientXacmlTests {
         subject.setAttribute(subjAttrList);
         subjectList.add(subject);
         request.setAccessSubject(subjectList);
-        
-        
-        //set resource
+
+        // set resource
         List<Resource> resourceList = new ArrayList<Resource>();
         Resource resource = new Resource();
         Attribute resourceAttr = new Attribute();
@@ -84,8 +83,8 @@ public class ConsentConsultClientXacmlTests {
         resource.setAttribute(resourceAttrList);
         resourceList.add(resource);
         request.setResource(resourceList);
-        
-        //set action
+
+        // set action
         List<Action> actionList = new ArrayList<Action>();
         Action action = new Action();
         List<ActionAttribute> actionAttrList = new ArrayList<ActionAttribute>();
@@ -99,20 +98,19 @@ public class ConsentConsultClientXacmlTests {
         actionAttrList.add(actionAttrPOU);
         action.setAttribute(actionAttrList);
         actionList.add(action);
-        
+
         request.setAction(actionList);
-        
+
         xacmlRequest.setRequest(request);
-        
-        
+
         decisionList.add("Permit");
         decisionList.add("Deny");
         decisionList.add("NotApplicable");
-        
+
         client = new ConsentConsultXacmlClient(host, xacmlRequest);
 
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -124,14 +122,15 @@ public class ConsentConsultClientXacmlTests {
         String decision = res.getDecision();
         String obligationAction = res.getObligations().get(0).getObligationId().getCode();
         String obligationActionSystem = res.getObligations().get(0).getObligationId().getSystem();
-        String securityLabel = res.getObligations().get(0).getAttributeAssignments().get(0).getSystemCodes().get(0).getCode();
-        
+        String securityLabel = res.getObligations().get(0).getAttributeAssignments().get(0).getSystemCodes().get(0)
+                .getCode();
+
         System.out.println(decision);
-        
-        assert(decisionList.contains(decision));
-        assert(obligationAction.equals("REDACT"));
-        assert(obligationActionSystem.equals("http://terminology.hl7.org/CodeSystem/v3-ActCode"));
-        assert(securityLabel.equals("R"));
-    
+
+        assert (decisionList.contains(decision));
+        assert (obligationAction.equals("REDACT"));
+        assert (obligationActionSystem.equals("http://terminology.hl7.org/CodeSystem/v3-ActCode"));
+        assert (securityLabel.equals("R"));
+
     }
 }

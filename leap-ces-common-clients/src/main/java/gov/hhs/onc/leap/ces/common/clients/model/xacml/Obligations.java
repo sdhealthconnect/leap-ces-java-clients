@@ -16,15 +16,12 @@ import java.util.List;
  * @author duanedecouteau
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "Id",
-    "AttributeAssignment"
-})
+@JsonPropertyOrder({ "Id", "AttributeAssignment" })
 public class Obligations {
-    
+
     @JsonProperty("Id")
     private ObligationId obligationId;
-    
+
     @JsonProperty("AttributeAssignent")
     private List<AttributeAssignment> attributeAssignments = new ArrayList<AttributeAssignment>();
 
@@ -37,7 +34,8 @@ public class Obligations {
     }
 
     /**
-     * @param obligationId the obligationId to set
+     * @param obligationId
+     *            the obligationId to set
      */
     @JsonProperty("Id")
     public void setObligationId(ObligationId obligationId) {
@@ -53,7 +51,8 @@ public class Obligations {
     }
 
     /**
-     * @param attributeAssignments the attributeAssignments to set
+     * @param attributeAssignments
+     *            the attributeAssignments to set
      */
     @JsonProperty("AttributeAssignment")
     public void setAttributeAssignments(List<AttributeAssignment> attributeAssignments) {
