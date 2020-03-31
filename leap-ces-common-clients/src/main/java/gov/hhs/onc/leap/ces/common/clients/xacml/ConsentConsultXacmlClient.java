@@ -5,7 +5,6 @@
  */
 package gov.hhs.onc.leap.ces.common.clients.xacml;
 
-import org.apache.http.client.HttpClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlResponse;

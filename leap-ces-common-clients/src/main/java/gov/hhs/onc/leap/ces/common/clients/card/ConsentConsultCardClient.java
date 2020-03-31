@@ -7,7 +7,6 @@ package gov.hhs.onc.leap.ces.common.clients.card;
 
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookResponse;
-import org.apache.http.client.HttpClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
