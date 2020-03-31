@@ -17,3 +17,9 @@
 /ces-common-clients/nbproject/
 
 /leap-ces-common-clients/target/
+leap-ces-common-clients/.settings/org.eclipse.core.resources.prefs
+leap-ces-common-clients/.settings/org.eclipse.jdt.apt.core.prefs
+leap-ces-common-clients/.settings/org.eclipse.m2e.core.prefs
+leap-ces-common-clients/.settings/org.eclipse.jdt.core.prefs
+leap-ces-common-clients/.project
+leap-ces-common-clients/.classpath
