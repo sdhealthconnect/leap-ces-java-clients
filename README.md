@@ -34,7 +34,7 @@ To see an example of the JSON string for the XACML requst check out the [LEAP CD
 ### Code Linter
 You can run the linter using maven:
 ```
-mvn formatter:format
+mvn googleformatter:format
 ```
 
 ## Setup
