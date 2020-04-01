@@ -10,19 +10,14 @@ import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlResponse;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.http.Header;
-import org.apache.http.HttpHeaders;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicHeader;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.io.OutputStream;
+import java.io.IOException;
 
 /**
  *
@@ -32,61 +27,42 @@ public class ConsentConsultXacmlClient {
     private final static Logger LOGGER = Logger.getLogger(ConsentConsultXacmlClient.class.getName());
     private final String host;
     private final String endpoint = "/xacml";
-    private final XacmlRequest consentRequest;
 
-    private static final Header CDS_CLIENT_HEADER_CONTENT = new BasicHeader(HttpHeaders.CONTENT_TYPE,
-            "application/json");
-    private static final Header CDS_CLIENT_HEADER_ACCEPTS = new BasicHeader(HttpHeaders.ACCEPT, "application/json");
-
-    public ConsentConsultXacmlClient(String host, XacmlRequest consentRequest) {
+    public ConsentConsultXacmlClient(String host) {
         this.host = host;
-        this.consentRequest = consentRequest;
     }
 
-    public XacmlResponse requestDecisionSecured() {
-        XacmlResponse result = new XacmlResponse();
-        CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(new NoopHostnameVerifier())
-                .setDefaultHeaders(getDefaultHeaders()).build();
-        try {
-            HttpPost postRequest = new HttpPost(host + endpoint);
-            ObjectMapper mapper = new ObjectMapper();
-            String jsonString = mapper.writeValueAsString(consentRequest);
-            StringEntity input = new StringEntity(jsonString);
+    public XacmlResponse getConsentDecision(String request) throws IOException {
 
-            postRequest.setEntity(input);
-
-            HttpResponse response = httpClient.execute(postRequest);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-
-            String output;
-            StringBuffer sb = new StringBuffer();
-
-            while ((output = br.readLine()) != null) {
-                sb.append(output);
-            }
-            LOGGER.log(Level.INFO, String.format("Patient Consent Consult Response: ", sb.toString()));
-
-            result = mapper.readValue(sb.toString(), XacmlResponse.class);
-        } catch (Exception ex) {
-            LOGGER.log(Level.SEVERE, String.format("Patient Consent Consult Failure: ", ex.getMessage()));
-            ex.printStackTrace();
-        } finally {
-            try {
-                httpClient.close();
-            } catch (Exception exClose) {
-                LOGGER.log(Level.WARNING,
-                        String.format("Consent Consult Client Failed to Close: ", exClose.getMessage()));
-            }
+        URL url = new URL(host + endpoint);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("Accept", "application/json");
+    
+        OutputStream os = conn.getOutputStream();
+        os.write(request.getBytes());
+        os.flush();
+    
+        if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+            LOGGER.log(Level.WARNING, "Consent Decision XACML Failed: HTTP error code : " + conn.getResponseCode());
+          throw new RuntimeException("Consent Decision XACML Failed: HTTP error code : " + conn.getResponseCode());
         }
-        return result;
-    }
-
-    private List<Header> getDefaultHeaders() {
-        List<Header> defaultHeaders = new ArrayList<Header>();
-        defaultHeaders.add(CDS_CLIENT_HEADER_CONTENT);
-        defaultHeaders.add(CDS_CLIENT_HEADER_ACCEPTS);
-        return defaultHeaders;
-    }
-
+    
+        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+        StringBuffer response = new StringBuffer();
+        while (br.ready()) {
+          response.append("\n" + br.readLine());
+        }
+        conn.disconnect();
+        
+        return new ObjectMapper()
+            .readValue(response.toString(), XacmlResponse.class);
+      }
+    
+      public XacmlResponse getConsentDecision(XacmlRequest consentRequest) throws IOException {
+        String consentRequestString = new ObjectMapper().writeValueAsString(consentRequest);
+        return getConsentDecision(consentRequestString);
+      }
 }
