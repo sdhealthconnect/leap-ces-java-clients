@@ -9,52 +9,38 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-/**
- *
- * @author duanedecouteau
- */
+/** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "system", "value" })
+@JsonPropertyOrder({"system", "value"})
 public class SystemValue {
 
-    @JsonProperty("system")
-    private String system;
+  @JsonProperty("system")
+  private String system;
 
-    @JsonProperty("value")
-    private String value;
+  @JsonProperty("value")
+  private String value;
 
-    /**
-     * @return the system
-     */
-    @JsonProperty("system")
-    public String getSystem() {
-        return system;
-    }
+  /** @return the system */
+  @JsonProperty("system")
+  public String getSystem() {
+    return system;
+  }
 
-    /**
-     * @param system
-     *            the system to set
-     */
-    @JsonProperty("system")
-    public void setSystem(String system) {
-        this.system = system;
-    }
+  /** @param system the system to set */
+  @JsonProperty("system")
+  public void setSystem(String system) {
+    this.system = system;
+  }
 
-    /**
-     * @return the code
-     */
-    @JsonProperty("value")
-    public String getValue() {
-        return value;
-    }
+  /** @return the code */
+  @JsonProperty("value")
+  public String getValue() {
+    return value;
+  }
 
-    /**
-     * @param code
-     *            the code to set
-     */
-    @JsonProperty("value")
-    public void setValue(String value) {
-        this.value = value;
-    }
-
+  /** @param code the code to set */
+  @JsonProperty("value")
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

@@ -11,52 +11,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * Patient Consent Consult XACML Request
- * <p>
- * Patient Consent Consult XACML Request
  *
+ * <p>Patient Consent Consult XACML Request
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "Request" })
+@JsonPropertyOrder({"Request"})
 public class XacmlRequest {
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("Request")
-    private Request request;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  /** (Required) */
+  @JsonProperty("Request")
+  private Request request;
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("Request")
-    public Request getRequest() {
-        return request;
-    }
+  @JsonIgnore private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("Request")
-    public void setRequest(Request request) {
-        this.request = request;
-    }
+  /** (Required) */
+  @JsonProperty("Request")
+  public Request getRequest() {
+    return request;
+  }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  /** (Required) */
+  @JsonProperty("Request")
+  public void setRequest(Request request) {
+    this.request = request;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 }

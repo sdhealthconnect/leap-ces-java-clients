@@ -24,24 +24,18 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- *
- * @author duanedecouteau
- */
+/** @author duanedecouteau */
 public class ConsentConsultClientXacmlTests {
   private ConsentConsultXacmlClient client;
   private String host = "https://sdhc-leap.appspot.com";
 
-  public ConsentConsultClientXacmlTests() {
-  }
+  public ConsentConsultClientXacmlTests() {}
 
   @BeforeClass
-  public static void setUpClass() {
-  }
+  public static void setUpClass() {}
 
   @AfterClass
-  public static void tearDownClass() {
-  }
+  public static void tearDownClass() {}
 
   @Before
   public void setUp() {
@@ -49,8 +43,7 @@ public class ConsentConsultClientXacmlTests {
   }
 
   @After
-  public void tearDown() {
-  }
+  public void tearDown() {}
 
   @Test
   public void INTEGRATION_CES_TEST1() throws Exception {
@@ -113,8 +106,14 @@ public class ConsentConsultClientXacmlTests {
     String decision = res.getDecision();
     String obligationAction = res.getObligations().get(0).getObligationId().getCode();
     String obligationActionSystem = res.getObligations().get(0).getObligationId().getSystem();
-    String securityLabel = res.getObligations().get(0).getAttributeAssignments().get(0).getSystemCodes().get(0)
-        .getCode();
+    String securityLabel =
+        res.getObligations()
+            .get(0)
+            .getAttributeAssignments()
+            .get(0)
+            .getSystemCodes()
+            .get(0)
+            .getCode();
 
     assert ("Permit".equals(decision));
     assert ("REDACT".equals(obligationAction));
@@ -124,62 +123,69 @@ public class ConsentConsultClientXacmlTests {
 
   @Test
   public void INTEGRATION_CES_TEST2() throws Exception {
-    String xacmlRequestString = "{" +
-    "  \"Request\":{" +
-    "    \"AccessSubject\":[" +
-    "      {" +
-    "        \"Attribute\":[" +
-    "          {" +
-    "            \"AttributeId\":\"actor\"," +
-    "            \"Value\":[" +
-    "              {" +
-    "                \"system\":\"urn:ietf:rfc:3986\"," +
-    "                \"value\":\"2.16.840.1.113883.20.5\"" +
-    "              }" +
-    "            ]" +
-    "          }" +
-    "        ]" +
-    "      }" +
-    "    ]," +
-    "    \"Action\":[" +
-    "      {" +
-    "        \"Attribute\":[" +
-    "          {" +
-    "            \"AttributeId\":\"scope\"," +
-    "            \"Value\":\"patient-privacy\"" +
-    "          }," +
-    "          {" +
-    "            \"AttributeId\":\"purposeOfUse\"," +
-    "            \"Value\":\"TREAT\"" +
-    "          }" +
-    "        ]" +
-    "      }" +
-    "    ]," +
-    "    \"Resource\":[" +
-    "      {" +
-    "        \"Attribute\":[" +
-    "          {" +
-    "            \"AttributeId\":\"patientId\"," +
-    "            \"Value\":[" +
-    "              {" +
-    "                \"system\":\"http://hl7.org/fhir/sid/us-ssn\"," +
-    "                \"value\":\"111111111\"" +
-    "              }" +
-    "            ]" +
-    "          }" +
-    "        ]" +
-    "      }" +
-    "    ]" +
-    "  }" +
-    "}";
-  
+    String xacmlRequestString =
+        "{"
+            + "  \"Request\":{"
+            + "    \"AccessSubject\":["
+            + "      {"
+            + "        \"Attribute\":["
+            + "          {"
+            + "            \"AttributeId\":\"actor\","
+            + "            \"Value\":["
+            + "              {"
+            + "                \"system\":\"urn:ietf:rfc:3986\","
+            + "                \"value\":\"2.16.840.1.113883.20.5\""
+            + "              }"
+            + "            ]"
+            + "          }"
+            + "        ]"
+            + "      }"
+            + "    ],"
+            + "    \"Action\":["
+            + "      {"
+            + "        \"Attribute\":["
+            + "          {"
+            + "            \"AttributeId\":\"scope\","
+            + "            \"Value\":\"patient-privacy\""
+            + "          },"
+            + "          {"
+            + "            \"AttributeId\":\"purposeOfUse\","
+            + "            \"Value\":\"TREAT\""
+            + "          }"
+            + "        ]"
+            + "      }"
+            + "    ],"
+            + "    \"Resource\":["
+            + "      {"
+            + "        \"Attribute\":["
+            + "          {"
+            + "            \"AttributeId\":\"patientId\","
+            + "            \"Value\":["
+            + "              {"
+            + "                \"system\":\"http://hl7.org/fhir/sid/us-ssn\","
+            + "                \"value\":\"111111111\""
+            + "              }"
+            + "            ]"
+            + "          }"
+            + "        ]"
+            + "      }"
+            + "    ]"
+            + "  }"
+            + "}";
+
     XacmlResponse xacmlResponse = client.getConsentDecision(xacmlRequestString);
     Response res = xacmlResponse.getResponse().get(0);
     String decision = res.getDecision();
     String obligationAction = res.getObligations().get(0).getObligationId().getCode();
     String obligationActionSystem = res.getObligations().get(0).getObligationId().getSystem();
-    String securityLabel = res.getObligations().get(0).getAttributeAssignments().get(0).getSystemCodes().get(0)
-        .getCode();
+    String securityLabel =
+        res.getObligations()
+            .get(0)
+            .getAttributeAssignments()
+            .get(0)
+            .getSystemCodes()
+            .get(0)
+            .getCode();
 
     assert ("Permit".equals(decision));
     assert ("REDACT".equals(obligationAction));

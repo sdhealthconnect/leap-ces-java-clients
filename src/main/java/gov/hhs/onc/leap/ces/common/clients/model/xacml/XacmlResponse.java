@@ -12,52 +12,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * Patient Consent Consult XACML Response
- * <p>
- * Patient Consent Consult XACML Response
  *
+ * <p>Patient Consent Consult XACML Response
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "Response" })
+@JsonPropertyOrder({"Response"})
 public class XacmlResponse {
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("Response")
-    private List<Response> response = null;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  /** (Required) */
+  @JsonProperty("Response")
+  private List<Response> response = null;
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("Response")
-    public List<Response> getResponse() {
-        return response;
-    }
+  @JsonIgnore private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("Response")
-    public void setResponse(List<Response> response) {
-        this.response = response;
-    }
+  /** (Required) */
+  @JsonProperty("Response")
+  public List<Response> getResponse() {
+    return response;
+  }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  /** (Required) */
+  @JsonProperty("Response")
+  public void setResponse(List<Response> response) {
+    this.response = response;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 }

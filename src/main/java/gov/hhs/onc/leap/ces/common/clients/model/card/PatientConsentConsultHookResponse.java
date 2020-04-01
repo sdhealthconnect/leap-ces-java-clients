@@ -12,52 +12,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * Patient Consent Consult Hook Response
- * <p>
- * Patient Consent Consult Hook Response
  *
+ * <p>Patient Consent Consult Hook Response
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "cards" })
+@JsonPropertyOrder({"cards"})
 public class PatientConsentConsultHookResponse {
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("cards")
-    private List<Card> cards = null;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+  /** (Required) */
+  @JsonProperty("cards")
+  private List<Card> cards = null;
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("cards")
-    public List<Card> getCards() {
-        return cards;
-    }
+  @JsonIgnore private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     *
-     * (Required)
-     *
-     */
-    @JsonProperty("cards")
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-    }
+  /** (Required) */
+  @JsonProperty("cards")
+  public List<Card> getCards() {
+    return cards;
+  }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
+  /** (Required) */
+  @JsonProperty("cards")
+  public void setCards(List<Card> cards) {
+    this.cards = cards;
+  }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
 
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 }
