@@ -91,7 +91,7 @@ public class ConsentConsultClientCardTests {
 
   @Test
   public void INTEGRATION_CES_TEST2() throws Exception {
-    String request =
+    String requestString =
         "{"
             + "   \"hook\": \"patient-consent-consult\","
             + "    \"hookInstance\": \"hook-instance-123\","
@@ -112,7 +112,7 @@ public class ConsentConsultClientCardTests {
             + "      ]"
             + "    }"
             + "}";
-    PatientConsentConsultHookResponse res = client.getConsentDecision(request);
+    PatientConsentConsultHookResponse res = client.getConsentDecision(requestString);
 
     Card card = res.getCards().get(0);
     String summary = card.getSummary();
