@@ -45,7 +45,7 @@ public class ConsentConsultClientCardTests {
   public void tearDown() {}
 
   @Test
-  public void INTEGRATION_CES_TEST1() throws Exception{
+  public void INTEGRATION_CES_TEST1() throws Exception {
     PatientConsentConsultHookRequest request = new PatientConsentConsultHookRequest();
     Context ctx = new Context();
     PatientId patient = new PatientId();

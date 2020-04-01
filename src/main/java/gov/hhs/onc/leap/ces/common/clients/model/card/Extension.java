@@ -11,51 +11,38 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author duanedecouteau
- */
+/** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "Decision", "Obligations" })
+@JsonPropertyOrder({"Decision", "Obligations"})
 public class Extension {
 
-    @JsonProperty("decision")
-    private String decision;
+  @JsonProperty("decision")
+  private String decision;
 
-    @JsonProperty("obligations")
-    private List<Obligations> obligations = new ArrayList<Obligations>();
+  @JsonProperty("obligations")
+  private List<Obligations> obligations = new ArrayList<Obligations>();
 
-    /**
-     * @return the obligations
-     */
-    @JsonProperty("obligations")
-    public List<Obligations> getObligations() {
-        return obligations;
-    }
+  /** @return the obligations */
+  @JsonProperty("obligations")
+  public List<Obligations> getObligations() {
+    return obligations;
+  }
 
-    /**
-     * @param obligations
-     *            the obligations to set
-     */
-    @JsonProperty("obligations")
-    public void setObligations(List<Obligations> obligations) {
-        this.obligations = obligations;
-    }
+  /** @param obligations the obligations to set */
+  @JsonProperty("obligations")
+  public void setObligations(List<Obligations> obligations) {
+    this.obligations = obligations;
+  }
 
-    /**
-     * @return the decision
-     */
-    @JsonProperty("decision")
-    public String getDecision() {
-        return decision;
-    }
+  /** @return the decision */
+  @JsonProperty("decision")
+  public String getDecision() {
+    return decision;
+  }
 
-    /**
-     * @param decision
-     *            the decision to set
-     */
-    @JsonProperty("decision")
-    public void setDecision(String decision) {
-        this.decision = decision;
-    }
+  /** @param decision the decision to set */
+  @JsonProperty("decision")
+  public void setDecision(String decision) {
+    this.decision = decision;
+  }
 }

@@ -10,31 +10,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.List;
 
-/**
- *
- * @author duanedecouteau
- */
+/** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "Attribute" })
+@JsonPropertyOrder({"Attribute"})
 public class AccessSubject {
 
-    @JsonProperty("Attribute")
-    private List<Attribute> attribute;
+  @JsonProperty("Attribute")
+  private List<Attribute> attribute;
 
-    /**
-     * @return the attribute
-     */
-    @JsonProperty("Attribute")
-    public List<Attribute> getAttribute() {
-        return attribute;
-    }
+  /** @return the attribute */
+  @JsonProperty("Attribute")
+  public List<Attribute> getAttribute() {
+    return attribute;
+  }
 
-    /**
-     * @param attribute
-     *            the attribute to set
-     */
-    @JsonProperty("Attribute")
-    public void setAttribute(List<Attribute> attribute) {
-        this.attribute = attribute;
-    }
+  /** @param attribute the attribute to set */
+  @JsonProperty("Attribute")
+  public void setAttribute(List<Attribute> attribute) {
+    this.attribute = attribute;
+  }
 }

@@ -42,8 +42,11 @@ public class ConsentConsultCardClient {
     os.flush();
 
     if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-        LOGGER.log(Level.WARNING, "Consent Consult Hook Failed: HTTP error code : " + conn.getResponseCode());
-      throw new RuntimeException("Consent Consult Hook Failed: HTTP error code : " + conn.getResponseCode());
+      LOGGER.log(
+          Level.WARNING,
+          "Consent Consult Hook Failed: HTTP error code : " + conn.getResponseCode());
+      throw new RuntimeException(
+          "Consent Consult Hook Failed: HTTP error code : " + conn.getResponseCode());
     }
 
     BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
@@ -52,12 +55,13 @@ public class ConsentConsultCardClient {
       response.append("\n" + br.readLine());
     }
     conn.disconnect();
-    
+
     return new ObjectMapper()
         .readValue(response.toString(), PatientConsentConsultHookResponse.class);
   }
-  
-  public PatientConsentConsultHookResponse getConsentDecision(PatientConsentConsultHookRequest consentRequest) throws IOException {
+
+  public PatientConsentConsultHookResponse getConsentDecision(
+      PatientConsentConsultHookRequest consentRequest) throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     String consentRequestString = mapper.writeValueAsString(consentRequest);
     return getConsentDecision(consentRequestString);

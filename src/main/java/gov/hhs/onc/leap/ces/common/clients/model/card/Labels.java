@@ -9,51 +9,38 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- *
- * @author duanedecouteau
- */
+/** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "system", "code" })
+@JsonPropertyOrder({"system", "code"})
 public class Labels {
 
-    @JsonProperty("system")
-    private String system;
-    @JsonProperty("code")
-    private String code;
+  @JsonProperty("system")
+  private String system;
 
-    /**
-     * @return the system
-     */
-    @JsonProperty("system")
-    public String getSystem() {
-        return system;
-    }
+  @JsonProperty("code")
+  private String code;
 
-    /**
-     * @param system
-     *            the system to set
-     */
-    @JsonProperty("system")
-    public void setSystem(String system) {
-        this.system = system;
-    }
+  /** @return the system */
+  @JsonProperty("system")
+  public String getSystem() {
+    return system;
+  }
 
-    /**
-     * @return the code
-     */
-    @JsonProperty("code")
-    public String getCode() {
-        return code;
-    }
+  /** @param system the system to set */
+  @JsonProperty("system")
+  public void setSystem(String system) {
+    this.system = system;
+  }
 
-    /**
-     * @param code
-     *            the code to set
-     */
-    @JsonProperty("code")
-    public void setCode(String code) {
-        this.code = code;
-    }
+  /** @return the code */
+  @JsonProperty("code")
+  public String getCode() {
+    return code;
+  }
 
+  /** @param code the code to set */
+  @JsonProperty("code")
+  public void setCode(String code) {
+    this.code = code;
+  }
 }
