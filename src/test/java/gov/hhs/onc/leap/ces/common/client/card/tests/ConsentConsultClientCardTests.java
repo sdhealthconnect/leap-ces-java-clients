@@ -15,8 +15,7 @@ import gov.hhs.onc.leap.ces.common.clients.model.card.Card;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Extension;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookResponse;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Source;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,18 +50,14 @@ public class ConsentConsultClientCardTests {
     PatientId patient = new PatientId();
     patient.setSystem("http://hl7.org/fhir/sid/us-ssn");
     patient.setValue("111111111");
-    List<PatientId> lPatient = new ArrayList<PatientId>();
-    lPatient.add(patient);
-    ctx.setPatientId(lPatient);
-    PurposeOfUse pou = PurposeOfUse.TREAT;
-    ctx.setPurposeOfUse(pou);
+
+    ctx.setPatientId(Arrays.asList(patient));
+    ctx.setPurposeOfUse(PurposeOfUse.TREAT);
     ctx.setScope(Context.Scope.PATIENT_PRIVACY);
     Actor actor = new Actor();
     actor.setSystem("urn:ietf:rfc:3986");
     actor.setValue("2.16.840.1.113883.20.5");
-    List<Actor> lActor = new ArrayList<Actor>();
-    lActor.add(actor);
-    ctx.setActor(lActor);
+    ctx.setActor(Arrays.asList(actor));
     request.setContext(ctx);
 
     request.setHook("patient-consent-consult");
