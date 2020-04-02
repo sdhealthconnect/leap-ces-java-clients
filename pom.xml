@@ -21,6 +21,13 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub sdhealthconnect Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/sdhealthconnect/leap-ces-java-clients</url>
+        </repository>
+      </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
