@@ -14,7 +14,7 @@ import java.util.List;
 /** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"AttributeId", "Value"})
-public class Attribute {
+public class ConceptAttribute {
 
   @JsonProperty("AttributeId")
   private String attributeId;
@@ -30,8 +30,9 @@ public class Attribute {
 
   /** @param attributeId the attributeId to set */
   @JsonProperty("AttributeId")
-  public void setAttributeId(String attributeId) {
+  public ConceptAttribute setAttributeId(String attributeId) {
     this.attributeId = attributeId;
+    return this;
   }
 
   /** @return the value */
@@ -42,7 +43,8 @@ public class Attribute {
 
   /** @param value the value to set */
   @JsonProperty("Value")
-  public void setValue(List<SystemValue> value) {
+  public ConceptAttribute setValue(List<SystemValue> value) {
     this.value = value;
+    return this;
   }
 }

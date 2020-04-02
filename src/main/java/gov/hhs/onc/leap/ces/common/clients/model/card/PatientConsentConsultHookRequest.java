@@ -1,10 +1,5 @@
 package gov.hhs.onc.leap.ces.common.clients.model.card;
 
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
@@ -31,8 +26,6 @@ public class PatientConsentConsultHookRequest {
   @JsonPropertyDescription("Context where the consent decision is needed")
   private Context context;
 
-  @JsonIgnore private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
   /** (Required) */
   @JsonProperty("hook")
   public String getHook() {
@@ -41,8 +34,9 @@ public class PatientConsentConsultHookRequest {
 
   /** (Required) */
   @JsonProperty("hook")
-  public void setHook(String hook) {
+  public PatientConsentConsultHookRequest setHook(String hook) {
     this.hook = hook;
+    return this;
   }
 
   /** UUID for this hook call (Required) */
@@ -53,8 +47,9 @@ public class PatientConsentConsultHookRequest {
 
   /** UUID for this hook call (Required) */
   @JsonProperty("hookInstance")
-  public void setHookInstance(String hookInstance) {
+  public PatientConsentConsultHookRequest setHookInstance(String hookInstance) {
     this.hookInstance = hookInstance;
+    return this;
   }
 
   /** Context where the consent decision is needed (Required) */
@@ -65,17 +60,8 @@ public class PatientConsentConsultHookRequest {
 
   /** Context where the consent decision is needed (Required) */
   @JsonProperty("context")
-  public void setContext(Context context) {
+  public PatientConsentConsultHookRequest setContext(Context context) {
     this.context = context;
-  }
-
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
-  }
-
-  @JsonAnySetter
-  public void setAdditionalProperty(String name, Object value) {
-    this.additionalProperties.put(name, value);
+    return this;
   }
 }

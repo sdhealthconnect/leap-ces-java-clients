@@ -28,8 +28,9 @@ public class SystemValue {
 
   /** @param system the system to set */
   @JsonProperty("system")
-  public void setSystem(String system) {
+  public SystemValue setSystem(String system) {
     this.system = system;
+    return this;
   }
 
   /** @return the code */
@@ -40,7 +41,8 @@ public class SystemValue {
 
   /** @param code the code to set */
   @JsonProperty("value")
-  public void setValue(String value) {
+  public SystemValue setValue(String value) {
     this.value = value;
+    return this;
   }
 }
