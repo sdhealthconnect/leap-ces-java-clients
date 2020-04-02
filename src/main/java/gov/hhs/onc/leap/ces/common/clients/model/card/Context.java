@@ -35,8 +35,6 @@ public class Context {
   @JsonPropertyDescription("identity of the patient whose consent is being considered")
   private List<PatientId> patientId = null;
 
-  @JsonIgnore private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
   /** identifiers of the actor */
   @JsonProperty("actor")
   public List<Actor> getActor() {
@@ -45,8 +43,9 @@ public class Context {
 
   /** identifiers of the actor */
   @JsonProperty("actor")
-  public void setActor(List<Actor> actor) {
+  public Context setActor(List<Actor> actor) {
     this.actor = actor;
+    return this;
   }
 
   /** purpose of use */
@@ -57,8 +56,9 @@ public class Context {
 
   /** purpose of use */
   @JsonProperty("purposeOfUse")
-  public void setPurposeOfUse(Context.PurposeOfUse purposeOfUse) {
+  public Context setPurposeOfUse(Context.PurposeOfUse purposeOfUse) {
     this.purposeOfUse = purposeOfUse;
+    return this;
   }
 
   /** consent scope (Required) */
@@ -69,8 +69,9 @@ public class Context {
 
   /** consent scope (Required) */
   @JsonProperty("scope")
-  public void setScope(Context.Scope scope) {
+  public Context setScope(Context.Scope scope) {
     this.scope = scope;
+    return this;
   }
 
   /** identity of the patient whose consent is being considered (Required) */
@@ -81,18 +82,9 @@ public class Context {
 
   /** identity of the patient whose consent is being considered (Required) */
   @JsonProperty("patientId")
-  public void setPatientId(List<PatientId> patientId) {
+  public Context setPatientId(List<PatientId> patientId) {
     this.patientId = patientId;
-  }
-
-  @JsonAnyGetter
-  public Map<String, Object> getAdditionalProperties() {
-    return this.additionalProperties;
-  }
-
-  @JsonAnySetter
-  public void setAdditionalProperty(String name, Object value) {
-    this.additionalProperties.put(name, value);
+    return this;
   }
 
   public enum PurposeOfUse {

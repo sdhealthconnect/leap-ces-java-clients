@@ -16,17 +16,17 @@ import java.util.List;
 public class Action {
 
   @JsonProperty("Attribute")
-  private List<ActionAttribute> attribute;
+  private List<StringAttribute> attribute;
 
   /** @return the attribute */
   @JsonProperty("Attribute")
-  public List<ActionAttribute> getAttribute() {
+  public List<StringAttribute> getAttribute() {
     return attribute;
   }
 
   /** @param attribute the attribute to set */
   @JsonProperty("Attribute")
-  public void setAttribute(List<ActionAttribute> attribute) {
+  public void setAttribute(List<StringAttribute> attribute) {
     this.attribute = attribute;
   }
 }

@@ -16,17 +16,18 @@ import java.util.List;
 public class AccessSubject {
 
   @JsonProperty("Attribute")
-  private List<Attribute> attribute;
+  private List<ConceptAttribute> attribute;
 
   /** @return the attribute */
   @JsonProperty("Attribute")
-  public List<Attribute> getAttribute() {
+  public List<ConceptAttribute> getAttribute() {
     return attribute;
   }
 
   /** @param attribute the attribute to set */
   @JsonProperty("Attribute")
-  public void setAttribute(List<Attribute> attribute) {
+  public AccessSubject setAttribute(List<ConceptAttribute> attribute) {
     this.attribute = attribute;
+    return this;
   }
 }

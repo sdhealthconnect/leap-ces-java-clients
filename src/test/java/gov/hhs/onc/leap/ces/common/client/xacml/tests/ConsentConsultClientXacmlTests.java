@@ -7,8 +7,8 @@ package gov.hhs.onc.leap.ces.common.client.xacml.tests;
 
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.AccessSubject;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Action;
-import gov.hhs.onc.leap.ces.common.clients.model.xacml.ActionAttribute;
-import gov.hhs.onc.leap.ces.common.clients.model.xacml.Attribute;
+import gov.hhs.onc.leap.ces.common.clients.model.xacml.StringAttribute;
+import gov.hhs.onc.leap.ces.common.clients.model.xacml.ConceptAttribute;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Request;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Resource;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Response;
@@ -51,11 +51,11 @@ public class ConsentConsultClientXacmlTests {
 
     // set requestor info
     AccessSubject subject = new AccessSubject();
-    Attribute subjAttr = new Attribute();
-    subjAttr.setAttributeId("actor");
-    SystemValue subjValue = new SystemValue();
-    subjValue.setSystem("urn:ietf:rfc:3986");
-    subjValue.setValue("2.16.840.1.113883.20.5");
+    ConceptAttribute subjAttr = new ConceptAttribute()
+      .setAttributeId("actor");
+    SystemValue subjValue = new SystemValue()
+      .setSystem("urn:ietf:rfc:3986")
+      .setValue("2.16.840.1.113883.20.5");
 
     subjAttr.setValue(Arrays.asList(subjValue));
     subject.setAttribute(Arrays.asList(subjAttr));
@@ -63,25 +63,25 @@ public class ConsentConsultClientXacmlTests {
 
     // set resource
     Resource resource = new Resource();
-    Attribute resourceAttr = new Attribute();
-    resourceAttr.setAttributeId("patientId");
-    SystemValue resourceValue = new SystemValue();
-    resourceValue.setSystem("http://hl7.org/fhir/sid/us-ssn");
-    resourceValue.setValue("111111111");
-    resourceAttr.setValue(Arrays.asList(resourceValue));
+    SystemValue resourceValue = new SystemValue()
+      .setSystem("http://hl7.org/fhir/sid/us-ssn")
+      .setValue("111111111");
+    ConceptAttribute resourceAttr = new ConceptAttribute()
+      .setAttributeId("patientId")
+      .setValue(Arrays.asList(resourceValue));
     resource.setAttribute(Arrays.asList(resourceAttr));
     request.setResource(Arrays.asList(resource));
 
     // set action
     Action action = new Action();
-    ActionAttribute actionAttrScope = new ActionAttribute();
-    actionAttrScope.setAttributeId("scope");
-    actionAttrScope.setValue("patient-privacy");
-    ActionAttribute actionAttrPOU = new ActionAttribute();
-    actionAttrPOU.setAttributeId("purposeOfUse");
-    actionAttrPOU.setValue("TREAT");
+    StringAttribute actionAttrScope = new StringAttribute()
+      .setAttributeId("scope")
+      .setValue("patient-privacy");
+    StringAttribute actionAttrPOU = new StringAttribute()
+      .setAttributeId("purposeOfUse")
+      .setValue("TREAT");
 
-    action.setAttribute(Arrays.asList(new ActionAttribute[] {actionAttrScope, actionAttrPOU}));
+    action.setAttribute(Arrays.asList(new StringAttribute[] {actionAttrScope, actionAttrPOU}));
     request.setAction(Arrays.asList(action));
     xacmlRequest.setRequest(request);
 

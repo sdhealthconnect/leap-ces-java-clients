@@ -45,23 +45,21 @@ public class ConsentConsultClientCardTests {
 
   @Test
   public void INTEGRATION_CES_TEST1() throws Exception {
-    PatientConsentConsultHookRequest request = new PatientConsentConsultHookRequest();
-    Context ctx = new Context();
-    PatientId patient = new PatientId();
-    patient.setSystem("http://hl7.org/fhir/sid/us-ssn");
-    patient.setValue("111111111");
+    PatientId patient =
+        new PatientId().setSystem("http://hl7.org/fhir/sid/us-ssn").setValue("111111111");
+    Actor actor = new Actor().setSystem("urn:ietf:rfc:3986").setValue("2.16.840.1.113883.20.5");
+    Context ctx =
+        new Context()
+            .setPatientId(Arrays.asList(patient))
+            .setPurposeOfUse(PurposeOfUse.TREAT)
+            .setScope(Context.Scope.PATIENT_PRIVACY)
+            .setActor(Arrays.asList(actor));
 
-    ctx.setPatientId(Arrays.asList(patient));
-    ctx.setPurposeOfUse(PurposeOfUse.TREAT);
-    ctx.setScope(Context.Scope.PATIENT_PRIVACY);
-    Actor actor = new Actor();
-    actor.setSystem("urn:ietf:rfc:3986");
-    actor.setValue("2.16.840.1.113883.20.5");
-    ctx.setActor(Arrays.asList(actor));
-    request.setContext(ctx);
-
-    request.setHook("patient-consent-consult");
-    request.setHookInstance("123456");
+    PatientConsentConsultHookRequest request =
+        new PatientConsentConsultHookRequest()
+            .setContext(ctx)
+            .setHook("patient-consent-consult")
+            .setHookInstance("123456");
 
     PatientConsentConsultHookResponse res = client.getConsentDecision(request);
     Card card = res.getCards().get(0);
