@@ -18,6 +18,9 @@ import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlResponse;
 import gov.hhs.onc.leap.ces.common.clients.xacml.ConsentConsultXacmlClient;
 import java.util.Arrays;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -181,6 +184,44 @@ public class ConsentConsultClientXacmlTests {
             .setPatientId(
                 Arrays.asList(
                     new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-ssn", "111111111")))
+            .setActor(
+                Arrays.asList(
+                    new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")));
+
+    XacmlResponse xacmlResponse = client.getConsentDecision(request.toXacmlRequest());
+    Response res = xacmlResponse.getResponse().get(0);
+    String decision = res.getDecision();
+    String obligationAction = res.getObligations().get(0).getObligationId().getCode();
+    String obligationActionSystem = res.getObligations().get(0).getObligationId().getSystem();
+    String securityLabel =
+        res.getObligations()
+            .get(0)
+            .getAttributeAssignments()
+            .get(0)
+            .getSystemCodes()
+            .get(0)
+            .getCode();
+
+    assert ("Permit".equals(decision));
+    assert ("REDACT".equals(obligationAction));
+    assert ("http://terminology.hl7.org/CodeSystem/v3-ActCode".equals(obligationActionSystem));
+    assert ("R".equals(securityLabel));
+  }
+
+  @Test
+  public void INTEGRATION_CES_TEST4() throws Exception {
+
+    CESRequest.SystemValuePair[] patientIds =
+        new CESRequest.SystemValuePair[] {
+          new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-ssn", "111111111"),
+          new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-medicare", "0000-000-0000"),
+        };
+
+    CESRequest request =
+        new CESRequest()
+            .setScope("patient-privacy")
+            .setPurposeOfUse("TREAT")
+            .setPatientId(Arrays.asList(patientIds))
             .setActor(
                 Arrays.asList(
                     new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")));
