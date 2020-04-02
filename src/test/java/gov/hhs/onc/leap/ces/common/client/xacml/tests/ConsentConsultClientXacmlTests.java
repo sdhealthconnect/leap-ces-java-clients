@@ -5,6 +5,7 @@
  */
 package gov.hhs.onc.leap.ces.common.client.xacml.tests;
 
+import gov.hhs.onc.leap.ces.common.clients.model.generic.CESRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.AccessSubject;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Action;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.StringAttribute;
@@ -51,11 +52,9 @@ public class ConsentConsultClientXacmlTests {
 
     // set requestor info
     AccessSubject subject = new AccessSubject();
-    ConceptAttribute subjAttr = new ConceptAttribute()
-      .setAttributeId("actor");
-    SystemValue subjValue = new SystemValue()
-      .setSystem("urn:ietf:rfc:3986")
-      .setValue("2.16.840.1.113883.20.5");
+    ConceptAttribute subjAttr = new ConceptAttribute().setAttributeId("actor");
+    SystemValue subjValue =
+        new SystemValue().setSystem("urn:ietf:rfc:3986").setValue("2.16.840.1.113883.20.5");
 
     subjAttr.setValue(Arrays.asList(subjValue));
     subject.setAttribute(Arrays.asList(subjAttr));
@@ -63,23 +62,19 @@ public class ConsentConsultClientXacmlTests {
 
     // set resource
     Resource resource = new Resource();
-    SystemValue resourceValue = new SystemValue()
-      .setSystem("http://hl7.org/fhir/sid/us-ssn")
-      .setValue("111111111");
-    ConceptAttribute resourceAttr = new ConceptAttribute()
-      .setAttributeId("patientId")
-      .setValue(Arrays.asList(resourceValue));
+    SystemValue resourceValue =
+        new SystemValue().setSystem("http://hl7.org/fhir/sid/us-ssn").setValue("111111111");
+    ConceptAttribute resourceAttr =
+        new ConceptAttribute().setAttributeId("patientId").setValue(Arrays.asList(resourceValue));
     resource.setAttribute(Arrays.asList(resourceAttr));
     request.setResource(Arrays.asList(resource));
 
     // set action
     Action action = new Action();
-    StringAttribute actionAttrScope = new StringAttribute()
-      .setAttributeId("scope")
-      .setValue("patient-privacy");
-    StringAttribute actionAttrPOU = new StringAttribute()
-      .setAttributeId("purposeOfUse")
-      .setValue("TREAT");
+    StringAttribute actionAttrScope =
+        new StringAttribute().setAttributeId("scope").setValue("patient-privacy");
+    StringAttribute actionAttrPOU =
+        new StringAttribute().setAttributeId("purposeOfUse").setValue("TREAT");
 
     action.setAttribute(Arrays.asList(new StringAttribute[] {actionAttrScope, actionAttrPOU}));
     request.setAction(Arrays.asList(action));
@@ -158,6 +153,39 @@ public class ConsentConsultClientXacmlTests {
             + "}";
 
     XacmlResponse xacmlResponse = client.getConsentDecision(xacmlRequestString);
+    Response res = xacmlResponse.getResponse().get(0);
+    String decision = res.getDecision();
+    String obligationAction = res.getObligations().get(0).getObligationId().getCode();
+    String obligationActionSystem = res.getObligations().get(0).getObligationId().getSystem();
+    String securityLabel =
+        res.getObligations()
+            .get(0)
+            .getAttributeAssignments()
+            .get(0)
+            .getSystemCodes()
+            .get(0)
+            .getCode();
+
+    assert ("Permit".equals(decision));
+    assert ("REDACT".equals(obligationAction));
+    assert ("http://terminology.hl7.org/CodeSystem/v3-ActCode".equals(obligationActionSystem));
+    assert ("R".equals(securityLabel));
+  }
+
+  @Test
+  public void INTEGRATION_CES_TEST3() throws Exception {
+    CESRequest request =
+        new CESRequest()
+            .setScope("patient-privacy")
+            .setPurposeOfUse("TREAT")
+            .setPatientId(
+                Arrays.asList(
+                    new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-ssn", "111111111")))
+            .setActor(
+                Arrays.asList(
+                    new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")));
+
+    XacmlResponse xacmlResponse = client.getConsentDecision(request.toXacmlRequest());
     Response res = xacmlResponse.getResponse().get(0);
     String decision = res.getDecision();
     String obligationAction = res.getObligations().get(0).getObligationId().getCode();
