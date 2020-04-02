@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"AttributeId", "Value"})
-public class ActionAttribute {
+public class StringAttribute {
 
   @JsonProperty("AttributeId")
   private String attributeId;
@@ -28,8 +28,9 @@ public class ActionAttribute {
 
   /** @param attributeId the attributeId to set */
   @JsonProperty("AttributeId")
-  public void setAttributeId(String attributeId) {
+  public StringAttribute setAttributeId(String attributeId) {
     this.attributeId = attributeId;
+    return this;
   }
 
   /** @return the value */
@@ -40,7 +41,8 @@ public class ActionAttribute {
 
   /** @param value the value to set */
   @JsonProperty("Value")
-  public void setValue(String value) {
+  public StringAttribute setValue(String value) {
     this.value = value;
+    return this;
   }
 }
