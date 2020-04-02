@@ -13,6 +13,12 @@ import gov.hhs.onc.leap.ces.common.clients.model.xacml.Resource;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Response;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.SystemValue;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlRequest;
+import gov.hhs.onc.leap.ces.common.clients.model.card.Actor;
+import gov.hhs.onc.leap.ces.common.clients.model.card.Context;
+import gov.hhs.onc.leap.ces.common.clients.model.card.Context.PurposeOfUse;
+import gov.hhs.onc.leap.ces.common.clients.model.generic.CESRequest;
+import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookRequest;
+import gov.hhs.onc.leap.ces.common.clients.model.card.PatientId;
 
 public class CESRequest {
   public static class SystemValuePair {
@@ -72,6 +78,32 @@ public class CESRequest {
     xacmlRequest.setRequest(request);
 
     return xacmlRequest;
+  }
+
+  public PatientConsentConsultHookRequest toHookRequest(String hookInstance) {
+    List<PatientId> patienIds = new ArrayList<PatientId>();
+    for (SystemValuePair aPatientId : patientId) {
+      patienIds.add(new PatientId().setSystem(aPatientId.system).setValue(aPatientId.value));
+    }
+
+    List<Actor> actorIds = new ArrayList<Actor>();
+    for (SystemValuePair actorId : actor) {
+      actorIds.add(new Actor().setSystem(actorId.system).setValue(actorId.value));
+    }
+
+    Context ctx =
+        new Context()
+            .setPatientId(patienIds)
+            .setPurposeOfUse(Context.PurposeOfUse.fromValue(purposeOfUse))
+            .setScope(Context.Scope.fromValue(scope))
+            .setActor(actorIds);
+
+    PatientConsentConsultHookRequest request =
+        new PatientConsentConsultHookRequest()
+            .setContext(ctx)
+            .setHook("patient-consent-consult")
+            .setHookInstance(hookInstance);
+    return request;
   }
 
   public CESRequest() {}
