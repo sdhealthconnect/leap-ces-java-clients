@@ -49,7 +49,7 @@ public class ConsentConsultClientCardTests {
     PatientId patient =
         new PatientId().setSystem("http://hl7.org/fhir/sid/us-ssn").setValue("111111111");
     Actor actor = new Actor().setSystem("urn:ietf:rfc:3986").setValue("2.16.840.1.113883.20.5");
-    Context ctx =
+    Context context =
         new Context()
             .setPatientId(Arrays.asList(patient))
             .setPurposeOfUse(PurposeOfUse.TREAT)
@@ -58,7 +58,7 @@ public class ConsentConsultClientCardTests {
 
     PatientConsentConsultHookRequest request =
         new PatientConsentConsultHookRequest()
-            .setContext(ctx)
+            .setContext(context)
             .setHook("patient-consent-consult")
             .setHookInstance("123456");
 
