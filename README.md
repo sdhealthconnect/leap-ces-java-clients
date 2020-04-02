@@ -71,13 +71,6 @@ XacmlResponse xacmlResponse = client.getConsentDecision(request.toXacmlRequest()
 
 To see an example of the JSON string for the XACML requst check out the [LEAP CDS documentation](https://github.com/sdhealthconnect/leap-cds/blob/master/README.md).
 
-## Development
-### Code Linter
-You can run the linter using maven:
-```
-mvn googleformatter:format
-```
-
 ## Setup
 ### Build
 You can build the project using maven:
