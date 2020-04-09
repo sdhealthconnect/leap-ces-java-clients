@@ -40,9 +40,8 @@ public class ModelTests {
 
     @Test
     public void xacmlResponseParse() throws Exception {
-        String responseJSON = new String(
-                Files.readAllBytes(Paths.get(
-                        "src/test/java/gov/hhs/onc/leap/ces/common/client/model/fixtures/sample-xacml-response-with-codes.json")),
+        String responseJSON = new String(Files.readAllBytes(Paths.get(
+                "src/test/java/gov/hhs/onc/leap/ces/common/client/model/fixtures/sample-xacml-response-with-codes.json")),
                 "UTF-8");
         XacmlResponse response = new ObjectMapper().readValue(responseJSON, XacmlResponse.class);
 
@@ -50,9 +49,8 @@ public class ModelTests {
         assert ("R".equals(response.getResponse().get(0).getObligations().get(0).getAttributeAssignments().get(0)
                 .getSystemCodes().get(0).getCode()));
 
-        responseJSON = new String(
-                Files.readAllBytes(Paths.get(
-                        "src/test/java/gov/hhs/onc/leap/ces/common/client/model/fixtures/sample-xacml-response-with-except-any-of-codes.json")),
+        responseJSON = new String(Files.readAllBytes(Paths.get(
+                "src/test/java/gov/hhs/onc/leap/ces/common/client/model/fixtures/sample-xacml-response-with-except-any-of-codes.json")),
                 "UTF-8");
         response = new ObjectMapper().readValue(responseJSON, XacmlResponse.class);
 
