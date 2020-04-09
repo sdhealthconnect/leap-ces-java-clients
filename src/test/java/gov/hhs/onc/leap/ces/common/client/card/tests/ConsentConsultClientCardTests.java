@@ -72,7 +72,7 @@ public class ConsentConsultClientCardTests {
 
     String decision = extension.getDecision();
     String action = extension.getObligations().get(0).getObligationId().getCode();
-    String label = extension.getObligations().get(0).getParameters().getLabels().get(0).getCode();
+    String label = extension.getObligations().get(0).getParameters().getCodes().get(0).getCode();
 
     assert (summary != null);
     assert (detail != null);
@@ -118,7 +118,7 @@ public class ConsentConsultClientCardTests {
     String decision = extension.getDecision();
 
     String action = extension.getObligations().get(0).getObligationId().getCode();
-    String label = extension.getObligations().get(0).getParameters().getLabels().get(0).getCode();
+    String label = extension.getObligations().get(0).getParameters().getCodes().get(0).getCode();
 
     assert (summary != null);
     assert (detail != null);
@@ -152,7 +152,7 @@ public class ConsentConsultClientCardTests {
 
     String decision = extension.getDecision();
     String action = extension.getObligations().get(0).getObligationId().getCode();
-    String label = extension.getObligations().get(0).getParameters().getLabels().get(0).getCode();
+    String label = extension.getObligations().get(0).getParameters().getCodes().get(0).getCode();
 
     assert (summary != null);
     assert (detail != null);
