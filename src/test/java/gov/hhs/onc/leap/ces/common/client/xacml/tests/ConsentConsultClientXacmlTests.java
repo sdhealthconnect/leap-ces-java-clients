@@ -19,8 +19,6 @@ import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlResponse;
 import gov.hhs.onc.leap.ces.common.clients.xacml.ConsentConsultXacmlClient;
 import java.util.Arrays;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

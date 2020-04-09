@@ -10,12 +10,12 @@ import gov.hhs.onc.leap.ces.common.clients.model.xacml.StringAttribute;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.ConceptAttribute;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Request;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.Resource;
-import gov.hhs.onc.leap.ces.common.clients.model.xacml.Response;
+
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.SystemValue;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Actor;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Context;
-import gov.hhs.onc.leap.ces.common.clients.model.card.Context.PurposeOfUse;
+
 import gov.hhs.onc.leap.ces.common.clients.model.generic.CESRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientId;
