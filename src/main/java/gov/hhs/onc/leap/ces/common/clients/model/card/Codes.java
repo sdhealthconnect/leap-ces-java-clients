@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"system", "code"})
-public class Labels {
+public class Codes {
 
   @JsonProperty("system")
   private String system;
