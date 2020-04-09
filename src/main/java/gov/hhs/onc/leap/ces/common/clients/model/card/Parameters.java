@@ -12,21 +12,36 @@ import java.util.List;
 
 /** @author duanedecouteau */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"labels"})
+@JsonPropertyOrder({"codes", "exceptAnyOfCodes"})
 public class Parameters {
 
-  @JsonProperty("labels")
-  private List<Labels> labels;
+  @JsonProperty("codes")
+  private List<Codes> codes;
 
-  /** @return the labels */
-  @JsonProperty("labels")
-  public List<Labels> getLabels() {
-    return labels;
+  @JsonProperty("exceptAnyOfCodes")
+  private List<Codes> exceptAnyOfCodes;
+
+  /** @return the codes */
+  @JsonProperty("codes")
+  public List<Codes> getCodes() {
+    return codes;
   }
 
-  /** @param labels the labels to set */
-  @JsonProperty("labels")
-  public void setLabels(List<Labels> labels) {
-    this.labels = labels;
+  /** @param codes the codes to set */
+  @JsonProperty("codes")
+  public void setCodes(List<Codes> codes) {
+    this.codes = codes;
+  }
+
+  /** @return the codes */
+  @JsonProperty("exceptAnyOfCodes")
+  public List<Codes> getExceptAnyOfCodes() {
+    return exceptAnyOfCodes;
+  }
+
+  /** @param codes the codes to set */
+  @JsonProperty("exceptAnyOfCodes")
+  public void setExceptAnyOfCodes(List<Codes> exceptAnyOfCodes) {
+    this.exceptAnyOfCodes = exceptAnyOfCodes;
   }
 }
