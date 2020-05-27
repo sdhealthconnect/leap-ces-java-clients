@@ -12,6 +12,7 @@
 *.zip
 *.tar.gz
 *.rar
+*.iml
 
 /ces-common-clients/target/
 /ces-common-clients/nbproject/
@@ -31,3 +32,4 @@ leap-ces-common-clients/.classpath
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.m2e.core.prefs
 .vscode/settings.json
+.idea/**
