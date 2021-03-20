@@ -40,6 +40,9 @@ PatientConsentConsultHookRequest request =
 PatientConsentConsultHookResponse res = client.getConsentDecision(request);
 ``` 
 
+Note that for convenience, purpose of use is defined as an enum with the following values: `HMARKT`, `HOPERAT`, `HPAYMT`, `HRESCH`, `PATRQT`, `TREAT`, `ETREAT`, and `PUBHLTH`.
+
+
 To see an example of the JSON string for the CDS Hooks requst check out the [LEAP CDS documentation](https://github.com/sdhealthconnect/leap-cds/blob/master/README.md).
 
 ### XACML Client
