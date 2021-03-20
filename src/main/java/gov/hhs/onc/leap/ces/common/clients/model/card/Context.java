@@ -92,6 +92,7 @@ public class Context {
     HRESCH("HRESCH"),
     PATRQT("PATRQT"),
     TREAT("TREAT"),
+    ETREAT("ETREAT"),
     PUBHLTH("PUBHLTH");
 
     private final String value;
