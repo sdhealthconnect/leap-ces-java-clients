@@ -19,6 +19,7 @@ import gov.hhs.onc.leap.ces.common.clients.model.card.Context;
 import gov.hhs.onc.leap.ces.common.clients.model.generic.CESRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientId;
+import gov.hhs.onc.leap.ces.common.clients.model.card.ContentClass;
 
 public class CESRequest {
   public static class SystemValuePair {
@@ -33,6 +34,7 @@ public class CESRequest {
 
   List<SystemValuePair> patientId;
   List<SystemValuePair> actor;
+  List<SystemValuePair> contentClass;
   String scope;
   String purposeOfUse;
 
@@ -62,9 +64,16 @@ public class CESRequest {
           new SystemValue().setSystem(aPatientId.system).setValue(aPatientId.value));
     }
 
-    ConceptAttribute resourceAttr =
-        new ConceptAttribute().setAttributeId("patientId").setValue(xacmlPatientSystemValue);
-    resource.setAttribute(Arrays.asList(resourceAttr));
+    List<ConceptAttribute> resourceAttributes = new ArrayList<ConceptAttribute>();
+
+    ConceptAttribute patientIdAttr =
+      new ConceptAttribute().setAttributeId("patientId").setValue(xacmlPatientSystemValue);
+    
+    resourceAttributes.add(patientIdAttr);
+
+    maybeAddContentClassToXacmlRequest(resourceAttributes);
+
+    resource.setAttribute(resourceAttributes);
     request.setResource(Arrays.asList(resource));
 
     // set action
@@ -80,6 +89,22 @@ public class CESRequest {
     return xacmlRequest;
   }
 
+  private void maybeAddContentClassToXacmlRequest(List<ConceptAttribute> resourceAttributes) {
+    if (contentClass == null) {
+      return;
+    }
+    
+    List<SystemValue> xacmlContentClassSystemValue = new ArrayList<SystemValue>();
+    for (SystemValuePair aContentClass : contentClass) {
+      xacmlContentClassSystemValue.add(
+          new SystemValue().setSystem(aContentClass.system).setValue(aContentClass.value));
+    }
+
+    ConceptAttribute contentClassAttr = 
+      new ConceptAttribute().setAttributeId("class").setValue(xacmlContentClassSystemValue);
+    resourceAttributes.add(contentClassAttr);
+  }
+
   public PatientConsentConsultHookRequest toHookRequest(String hookInstance) {
     List<PatientId> patienIds = new ArrayList<PatientId>();
     for (SystemValuePair aPatientId : patientId) {
@@ -91,12 +116,18 @@ public class CESRequest {
       actorIds.add(new Actor().setSystem(actorId.system).setValue(actorId.value));
     }
 
+    List<ContentClass> contentClasses = new ArrayList<ContentClass>();
+    for (SystemValuePair aContentClass : contentClass) {
+      contentClasses.add(new ContentClass().setSystem(aContentClass.system).setValue(aContentClass.value));
+    }
+
     Context ctx =
         new Context()
             .setPatientId(patienIds)
             .setPurposeOfUse(Context.PurposeOfUse.fromValue(purposeOfUse))
             .setScope(Context.Scope.fromValue(scope))
-            .setActor(actorIds);
+            .setActor(actorIds)
+            .setContentClass(contentClasses);
 
     PatientConsentConsultHookRequest request =
         new PatientConsentConsultHookRequest()
@@ -111,6 +142,7 @@ public class CESRequest {
   public CESRequest(
       List<SystemValuePair> patientId,
       List<SystemValuePair> actor,
+      List<SystemValuePair> contentClass,
       String scope,
       String purposeOfUse) {
     this.patientId = patientId;
@@ -121,6 +153,10 @@ public class CESRequest {
 
   public List<SystemValuePair> getPatientId() {
     return this.patientId;
+  }
+
+  public List<SystemValuePair> getContentClass() {
+    return this.contentClass;
   }
 
   public List<SystemValuePair> getActor() {
@@ -137,6 +173,11 @@ public class CESRequest {
 
   public CESRequest setPatientId(List<SystemValuePair> patientId) {
     this.patientId = patientId;
+    return this;
+  }
+
+  public CESRequest setContentClass(List<SystemValuePair> contentClass) {
+    this.contentClass = contentClass;
     return this;
   }
 

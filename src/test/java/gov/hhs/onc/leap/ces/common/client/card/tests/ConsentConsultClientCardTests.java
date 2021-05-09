@@ -11,6 +11,7 @@ import gov.hhs.onc.leap.ces.common.clients.model.card.Context.PurposeOfUse;
 import gov.hhs.onc.leap.ces.common.clients.model.generic.CESRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientConsentConsultHookRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.card.PatientId;
+import gov.hhs.onc.leap.ces.common.clients.model.card.ContentClass;
 import gov.hhs.onc.leap.ces.common.clients.card.ConsentConsultCardClient;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Card;
 import gov.hhs.onc.leap.ces.common.clients.model.card.Extension;
@@ -49,12 +50,14 @@ public class ConsentConsultClientCardTests {
     PatientId patient =
         new PatientId().setSystem("http://hl7.org/fhir/sid/us-ssn").setValue("111111111");
     Actor actor = new Actor().setSystem("urn:ietf:rfc:3986").setValue("2.16.840.1.113883.20.5");
+    ContentClass contentClass = new ContentClass().setSystem("http://hl7.org/fhir/resource-types").setValue("AllergyIntolerance");
     Context context =
         new Context()
             .setPatientId(Arrays.asList(patient))
             .setPurposeOfUse(PurposeOfUse.TREAT)
             .setScope(Context.Scope.PATIENT_PRIVACY)
-            .setActor(Arrays.asList(actor));
+            .setActor(Arrays.asList(actor))
+            .setContentClass(Arrays.asList(contentClass));
 
     PatientConsentConsultHookRequest request =
         new PatientConsentConsultHookRequest()
@@ -139,7 +142,10 @@ public class ConsentConsultClientCardTests {
                     new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-ssn", "111111111")))
             .setActor(
                 Arrays.asList(
-                    new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")));
+                    new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")))
+            .setContentClass(
+              Arrays.asList(
+                  new CESRequest.SystemValuePair("http://hl7.org/fhir/resource-types", "AllergyIntolerance")));
 
     PatientConsentConsultHookResponse res =
         client.getConsentDecision(request.toHookRequest("123456"));
