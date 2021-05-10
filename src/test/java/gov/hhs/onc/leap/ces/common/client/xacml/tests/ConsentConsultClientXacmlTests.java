@@ -18,6 +18,9 @@ import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlRequest;
 import gov.hhs.onc.leap.ces.common.clients.model.xacml.XacmlResponse;
 import gov.hhs.onc.leap.ces.common.clients.xacml.ConsentConsultXacmlClient;
 import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -63,11 +66,24 @@ public class ConsentConsultClientXacmlTests {
 
     // set resource
     Resource resource = new Resource();
-    SystemValue resourceValue =
+    SystemValue patientIdValue =
         new SystemValue().setSystem("http://hl7.org/fhir/sid/us-ssn").setValue("111111111");
-    ConceptAttribute resourceAttr =
-        new ConceptAttribute().setAttributeId("patientId").setValue(Arrays.asList(resourceValue));
-    resource.setAttribute(Arrays.asList(resourceAttr));
+    
+    List<ConceptAttribute> resourceAttr = new ArrayList<ConceptAttribute>();
+
+    ConceptAttribute patientIdAttr =
+        new ConceptAttribute().setAttributeId("patientId").setValue(Arrays.asList(patientIdValue));
+    resourceAttr.add(patientIdAttr);
+
+    SystemValue contentClassValue =
+        new SystemValue().setSystem("http://hl7.org/fhir/resource-types").setValue("AllergyIntolerance");
+
+    ConceptAttribute contentClassAttr =
+        new ConceptAttribute().setAttributeId("class").setValue(Arrays.asList(contentClassValue));
+    resourceAttr.add(contentClassAttr);
+
+
+    resource.setAttribute(resourceAttr);
     request.setResource(Arrays.asList(resource));
 
     // set action
@@ -184,7 +200,10 @@ public class ConsentConsultClientXacmlTests {
                     new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-ssn", "111111111")))
             .setActor(
                 Arrays.asList(
-                    new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")));
+                    new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")))
+            .setContentClass(
+                Arrays.asList(
+                    new CESRequest.SystemValuePair("http://hl7.org/fhir/resource-types", "AllergyIntolerance")));
 
     XacmlResponse xacmlResponse = client.getConsentDecision(request.toXacmlRequest());
     Response res = xacmlResponse.getResponse().get(0);

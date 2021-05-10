@@ -24,12 +24,18 @@ Actor actor =
         .setSystem("urn:ietf:rfc:3986")
         .setValue("2.16.840.1.113883.20.5");
 
+ContentClass contentClass = 
+    new ContentClass()
+        .setSystem("http://hl7.org/fhir/resource-types")
+        .setValue("AllergyIntolerance");
+
 Context context =
     new Context()
         .setPatientId(Arrays.asList(patient))
         .setPurposeOfUse(PurposeOfUse.TREAT)
         .setScope(Context.Scope.PATIENT_PRIVACY)
-        .setActor(Arrays.asList(actor));
+        .setActor(Arrays.asList(actor))
+        .setContentClass(Arrays.asList(contentClass));
 
 PatientConsentConsultHookRequest request =
     new PatientConsentConsultHookRequest()
@@ -43,7 +49,7 @@ PatientConsentConsultHookResponse res = client.getConsentDecision(request);
 Note that for convenience, purpose of use is defined as an enum with the following values: `HMARKT`, `HOPERAT`, `HPAYMT`, `HRESCH`, `PATRQT`, `TREAT`, `ETREAT`, and `PUBHLTH`.
 
 
-To see an example of the JSON string for the CDS Hooks requst check out the [LEAP CDS documentation](https://github.com/sdhealthconnect/leap-cds/blob/master/README.md).
+To see an example of the JSON string for the CDS Hooks request check out the [LEAP CDS documentation](https://github.com/sdhealthconnect/leap-cds/blob/master/README.md).
 
 ### XACML Client
 The XACML Client can be instantiated by giving the host name where the Consent Decision Service resides:
@@ -67,12 +73,15 @@ CESRequest request =
                 new CESRequest.SystemValuePair("http://hl7.org/fhir/sid/us-ssn", "111111111")))
         .setActor(
             Arrays.asList(
-                new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")));
+                new CESRequest.SystemValuePair("urn:ietf:rfc:3986", "2.16.840.1.113883.20.5")))
+        .setContentClass(
+              Arrays.asList(
+                  new CESRequest.SystemValuePair("http://hl7.org/fhir/resource-types", "AllergyIntolerance")));
 
 XacmlResponse xacmlResponse = client.getConsentDecision(request.toXacmlRequest());
 ```
 
-To see an example of the JSON string for the XACML requst check out the [LEAP CDS documentation](https://github.com/sdhealthconnect/leap-cds/blob/master/README.md).
+To see an example of the JSON string for the XACML request check out the [LEAP CDS documentation](https://github.com/sdhealthconnect/leap-cds/blob/master/README.md).
 
 ## Setup
 ### Build

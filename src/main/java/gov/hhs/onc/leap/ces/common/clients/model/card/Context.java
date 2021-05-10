@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /** Context where the consent decision is needed */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"actor", "purposeOfUse", "scope", "patientId"})
+@JsonPropertyOrder({"actor", "purposeOfUse", "scope", "class", "patientId"})
 public class Context {
 
   /** identifiers of the actor */
@@ -28,6 +28,10 @@ public class Context {
   @JsonProperty("scope")
   @JsonPropertyDescription("consent scope")
   private Context.Scope scope;
+  /** An array of content classes in the workflow context. */
+  @JsonProperty("class")
+  @JsonPropertyDescription("An array of content classes in the workflow context.")
+  private List<ContentClass> contentClass = null;  
   /** identity of the patient whose consent is being considered (Required) */
   @JsonProperty("patientId")
   @JsonPropertyDescription("identity of the patient whose consent is being considered")
@@ -71,6 +75,19 @@ public class Context {
     this.scope = scope;
     return this;
   }
+
+    /** identity of the patient whose consent is being considered (Required) */
+    @JsonProperty("class")
+    public List<ContentClass> getContentClass() {
+      return contentClass;
+    }
+  
+    /** identity of the patient whose consent is being considered (Required) */
+    @JsonProperty("class")
+    public Context setContentClass(List<ContentClass> contentClass) {
+      this.contentClass = contentClass;
+      return this;
+    }
 
   /** identity of the patient whose consent is being considered (Required) */
   @JsonProperty("patientId")
